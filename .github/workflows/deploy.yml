@@ -1,0 +1,68 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: TiPortfolio-tools-website
+
+      - name: Checkout options package
+        uses: actions/checkout@v4
+        with:
+          repository: TradeInsight-Info/TiPortfolio-tools
+          path: TiPortfolio-tools
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: |
+            TiPortfolio-tools/pnpm-lock.yaml
+            TiPortfolio-tools-website/pnpm-lock.yaml
+
+      - name: Build options package
+        working-directory: TiPortfolio-tools
+        run: pnpm install --frozen-lockfile && pnpm build
+
+      - name: Install website dependencies
+        working-directory: TiPortfolio-tools-website
+        run: pnpm install --frozen-lockfile
+
+      - name: Build website
+        working-directory: TiPortfolio-tools-website
+        run: pnpm build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: TiPortfolio-tools-website/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
