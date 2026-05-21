@@ -9,7 +9,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  packages: read
 
 concurrency:
   group: pages
@@ -20,6 +19,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: TiPortfolio-tools-website
+
+      - name: Checkout options package
+        uses: actions/checkout@v4
+        with:
+          repository: TradeInsight-Info/TiPortfolio-tools
+          path: TiPortfolio-tools
 
       - uses: pnpm/action-setup@v4
         with:
@@ -29,21 +36,25 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          cache-dependency-path: |
+            TiPortfolio-tools/pnpm-lock.yaml
+            TiPortfolio-tools-website/pnpm-lock.yaml
 
-      - name: Add GitHub Packages auth
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "//npm.pkg.github.com/:_authToken=${TOKEN}" >> .npmrc
+      - name: Build options package
+        working-directory: TiPortfolio-tools
+        run: pnpm install --frozen-lockfile && pnpm build
 
-      - name: Install dependencies
+      - name: Install website dependencies
+        working-directory: TiPortfolio-tools-website
         run: pnpm install --frozen-lockfile
 
-      - name: Build
+      - name: Build website
+        working-directory: TiPortfolio-tools-website
         run: pnpm build
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: TiPortfolio-tools-website/dist
 
   deploy:
     needs: build

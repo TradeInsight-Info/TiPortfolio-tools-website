@@ -27,8 +27,8 @@ importers:
         specifier: ^1.1.0
         version: 1.2.4(@types/react@19.2.15)(react@19.2.6)
       '@tradeinsight-info/options':
-        specifier: ^0.1.0
-        version: 0.1.0
+        specifier: file:../TiPortfolio-tools
+        version: file:../TiPortfolio-tools
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.1
@@ -935,8 +935,8 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tradeinsight-info/options@0.1.0':
-    resolution: {integrity: sha512-LTwlZwaDd+Yim8P/gBFS+VQpVotQ0l9p4GgkWxtYgg7145Bo6vdDcoQvb5+I+vP4yU3zQnfutfbBHFSq+85lEA==, tarball: https://npm.pkg.github.com/download/@tradeinsight-info/options/0.1.0/e0b8ee2870dc8528686d1c8ebd55974bc62b52ec}
+  '@tradeinsight-info/options@file:../TiPortfolio-tools':
+    resolution: {directory: ../TiPortfolio-tools, type: directory}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2184,7 +2184,7 @@ snapshots:
       tailwindcss: 4.3.0
       vite: 6.4.2(@types/node@25.9.1)(jiti@2.7.0)(lightningcss@1.32.0)
 
-  '@tradeinsight-info/options@0.1.0': {}
+  '@tradeinsight-info/options@file:../TiPortfolio-tools': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
