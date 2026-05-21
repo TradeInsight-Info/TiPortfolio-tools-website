@@ -4,13 +4,15 @@ export default function Home() {
 
       {/* Hero */}
       <section className="space-y-4 max-w-2xl">
-        <h1 className="text-3xl font-bold tracking-tight">Options Tools — free and open 🤞</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Free Options Calculators — IV Solver, Greeks &amp; PnL Charts
+        </h1>
         <p className="text-lg text-muted-foreground">
-          Black-Scholes calculators extracted from{' '}
+          Black-Scholes calculators built from the same math that powers{' '}
           <a href="https://tradeinsight.info" className="text-primary underline underline-offset-4">
             TradeInsight.info
           </a>
-          . No sign-up. No ads. Just math.
+          . Open source, no sign-up, no ads.
         </p>
       </section>
 
@@ -23,12 +25,13 @@ export default function Home() {
             className="group block rounded-lg border border-border bg-card p-6 hover:border-primary transition-colors"
           >
             <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-              IV Calculator
+              Implied Volatility Calculator
             </h3>
             <p className="text-sm text-muted-foreground">
               Price an option or reverse-solve implied volatility from a market premium. Enter spot,
-              strike, days to expiry, and rate — get premium, delta, gamma, vega, theta, and rho.
-              Change either premium field to back-solve the IV. ✅
+              strike, days to expiry, and risk-free rate — get theoretical premium plus all five
+              Greeks: delta, gamma, vega, theta, and rho. Edit either premium field to back-solve IV
+              instantly.
             </p>
           </a>
           <a
@@ -36,12 +39,12 @@ export default function Home() {
             className="group block rounded-lg border border-border bg-card p-6 hover:border-primary transition-colors"
           >
             <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-              Option PnL Chart
+              Options Strategy PnL Chart
             </h3>
             <p className="text-sm text-muted-foreground">
-              Build a multi-leg strategy — calls, puts, or stock — and see the payoff curve at
-              today's theta and at expiry. Add as many legs as you need. Break-evens are marked on
-              the chart. ✅
+              Build any multi-leg options strategy — long/short calls, puts, or stock — and visualise
+              the payoff at expiry and at today's theta. Break-even prices are marked directly on the
+              chart. Useful for spreads, straddles, condors, and custom positions.
             </p>
           </a>
         </div>
@@ -50,11 +53,11 @@ export default function Home() {
       {/* Package */}
       <section className="space-y-4">
         <h2 className="text-2xl font-semibold tracking-tight border-b border-border pb-3">
-          Open Source Package
+          Open Source npm Package
         </h2>
         <p className="text-muted-foreground max-w-2xl">
-          The math powering both tools is available as a standalone package — MIT licensed, zero
-          runtime dependencies. 😊
+          The Black-Scholes math powering both tools is published as a standalone TypeScript package —
+          MIT licensed, zero runtime dependencies, tree-shakeable.
         </p>
         <div className="rounded-lg border border-border bg-card p-6 max-w-2xl space-y-4">
           <div className="flex items-center justify-between flex-wrap gap-2">
