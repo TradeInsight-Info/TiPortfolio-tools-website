@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from 'react'
-import { calculateGreeks, impliedVolatility } from '@tradeinsight/options'
+import { calculateGreeks, impliedVolatility } from '@tradeinsight-info/options'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'

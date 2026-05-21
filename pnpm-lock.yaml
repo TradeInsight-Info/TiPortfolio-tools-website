@@ -26,7 +26,7 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.1.0
         version: 1.2.4(@types/react@19.2.15)(react@19.2.6)
-      '@tradeinsight/options':
+      '@tradeinsight-info/options':
         specifier: file:../TiPortfolio-tools
         version: file:../TiPortfolio-tools
       class-variance-authority:
@@ -935,7 +935,7 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tradeinsight/options@file:../TiPortfolio-tools':
+  '@tradeinsight-info/options@file:../TiPortfolio-tools':
     resolution: {directory: ../TiPortfolio-tools, type: directory}
 
   '@types/babel__core@7.20.5':
@@ -2184,7 +2184,7 @@ snapshots:
       tailwindcss: 4.3.0
       vite: 6.4.2(@types/node@25.9.1)(jiti@2.7.0)(lightningcss@1.32.0)
 
-  '@tradeinsight/options@file:../TiPortfolio-tools': {}
+  '@tradeinsight-info/options@file:../TiPortfolio-tools': {}
 
   '@types/babel__core@7.20.5':
     dependencies:
