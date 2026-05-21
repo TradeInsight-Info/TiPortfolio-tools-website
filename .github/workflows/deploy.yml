@@ -31,8 +31,10 @@ jobs:
           cache: pnpm
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Disable supply-chain release-age gate
-        run: echo "minimum-release-age=0" >> "${NPM_CONFIG_USERCONFIG}"
+      - name: Authenticate GitHub Packages
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "//npm.pkg.github.com/:_authToken=${TOKEN}" >> .npmrc
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
