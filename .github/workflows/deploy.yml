@@ -29,16 +29,15 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          registry-url: 'https://npm.pkg.github.com'
 
-      - name: Configure registry auth and release age policy
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${TOKEN}" >> .npmrc
-          echo "minimum-release-age=0" >> "${NPM_CONFIG_USERCONFIG}"
+      - name: Disable supply-chain release-age gate
+        run: echo "minimum-release-age=0" >> "${NPM_CONFIG_USERCONFIG}"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: pnpm build
