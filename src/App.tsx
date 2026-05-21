@@ -1,8 +1,14 @@
-import { Routes, Route, Navigate, NavLink } from 'react-router-dom'
+import { Routes, Route, NavLink } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 
+const Home = lazy(() => import('@/pages/Home'))
 const IvCalculator = lazy(() => import('@/pages/IvCalculator'))
 const PnlChart = lazy(() => import('@/pages/PnlChart'))
+
+const navClass = ({ isActive }: { isActive: boolean }) =>
+  isActive
+    ? 'text-foreground font-medium'
+    : 'text-muted-foreground hover:text-foreground transition-colors'
 
 export default function App() {
   return (
@@ -10,28 +16,12 @@ export default function App() {
       <header className="border-b border-border bg-card">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center gap-6">
-            <span className="font-semibold text-primary">TiPortfolio Tools</span>
+            <NavLink to="/" className="font-semibold text-primary hover:opacity-80 transition-opacity">
+              TiPortfolio Tools
+            </NavLink>
             <nav className="flex gap-4 text-sm">
-              <NavLink
-                to="/iv"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'text-foreground font-medium'
-                    : 'text-muted-foreground hover:text-foreground transition-colors'
-                }
-              >
-                IV Calculator
-              </NavLink>
-              <NavLink
-                to="/pnl"
-                className={({ isActive }) =>
-                  isActive
-                    ? 'text-foreground font-medium'
-                    : 'text-muted-foreground hover:text-foreground transition-colors'
-                }
-              >
-                Option PnL Chart
-              </NavLink>
+              <NavLink to="/iv" className={navClass}>IV Calculator</NavLink>
+              <NavLink to="/pnl" className={navClass}>Option PnL Chart</NavLink>
             </nav>
           </div>
         </div>
@@ -39,7 +29,7 @@ export default function App() {
       <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <Suspense fallback={<div className="text-muted-foreground text-sm">Loading…</div>}>
           <Routes>
-            <Route path="/" element={<Navigate to="/iv" replace />} />
+            <Route path="/" element={<Home />} />
             <Route path="/iv" element={<IvCalculator />} />
             <Route path="/pnl" element={<PnlChart />} />
           </Routes>
